@@ -52,6 +52,7 @@ void sendPhoneNumber() {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Nhập số điện thoại của bạn'),
@@ -86,7 +87,7 @@ void sendPhoneNumber() {
                   ),
                 ],
               ),
-              const SizedBox(height: 80,),
+              SizedBox(height: size.height * 0.6),
               SizedBox(
                 width: 200,
                 child: CustomButton(
