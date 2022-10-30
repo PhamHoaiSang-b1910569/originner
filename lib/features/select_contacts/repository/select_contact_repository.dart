@@ -4,7 +4,7 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:originner/common/utils/utils.dart';
 import 'package:originner/models/user_model.dart';
-import 'package:originner/screens/mobile_chat_screen.dart';
+import 'package:originner/features/chat/screens/mobile_chat_screen.dart';
 
 // import 'package:originner/features/chat/screens/mobile_chat_screen.dart';
 

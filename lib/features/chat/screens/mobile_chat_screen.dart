@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:originner/colors.dart';
 import 'package:originner/common/widgets/loader.dart';
 import 'package:originner/features/auth/controller/auth_controller.dart';
+import 'package:originner/features/chat/widgets/bottom_chat_field.dart';
+
 import 'package:originner/models/user_model.dart';
 import 'package:originner/widgets/chat_list.dart';
 
