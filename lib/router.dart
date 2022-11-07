@@ -44,7 +44,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         // ignore: prefer_const_constructors
         builder: (context) => MobileChatScreen(
           name: name,
-          uid: uid,
+          uid: uid, 
+          
+          
           // isGroupChat: isGroupChat,
           // profilePic: profilePic,
         ),

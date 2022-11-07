@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:originner/colors.dart';
+import 'package:originner/features/chat/controller/chat_controller.dart';
 
 class BottomChatField extends ConsumerStatefulWidget {
-  // final String recieverUserId;
+  final String recieverUserId;
   // final bool isGroupChat;
   const BottomChatField({
     Key? key,
-    
+    required this.recieverUserId,
   }) : super(key: key);
 
   @override
@@ -17,7 +18,8 @@ class BottomChatField extends ConsumerStatefulWidget {
 
 class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   bool isShowSendButton = false;
-  // final TextEditingController _messageController = TextEditingController();
+
+  final TextEditingController _messageController = TextEditingController();
   // FlutterSoundRecorder? _soundRecorder;
   // bool isRecorderInit = false;
   // bool isShowEmojiContainer = false;
@@ -40,37 +42,37 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   //   isRecorderInit = true;
   // }
 
-  // void sendTextMessage() async {
-  //   if (isShowSendButton) {
-  //     ref.read(chatControllerProvider).sendTextMessage(
-  //           context,
-  //           _messageController.text.trim(),
-  //           widget.recieverUserId,
-  //           widget.isGroupChat,
-  //         );
-  //     setState(() {
-  //       _messageController.text = '';
-  //     });
-  //   } else {
-  //     var tempDir = await getTemporaryDirectory();
-  //     var path = '${tempDir.path}/flutter_sound.aac';
-  //     if (!isRecorderInit) {
-  //       return;
-  //     }
-  //     if (isRecording) {
-  //       await _soundRecorder!.stopRecorder();
-  //       sendFileMessage(File(path), MessageEnum.audio);
-  //     } else {
-  //       await _soundRecorder!.startRecorder(
-  //         toFile: path,
-  //       );
-  //     }
+  void sendTextMessage() async {
+    if (isShowSendButton) {
+      ref.read(chatControllerProvider).sendTextMessage(
+            context,
+            _messageController.text.trim(),
+            widget.recieverUserId,
+            // widget.isGroupChat,
+          );
+      setState(() {
+        _messageController.text = '';
+      });
+    } else {
+      // var tempDir = await getTemporaryDirectory();
+      // var path = '${tempDir.path}/flutter_sound.aac';
+      // if (!isRecorderInit) {
+      //   return;
+      // }
+      // if (isRecording) {
+      //   await _soundRecorder!.stopRecorder();
+      //   sendFileMessage(File(path), MessageEnum.audio);
+      // } else {
+      //   await _soundRecorder!.startRecorder(
+      //     toFile: path,
+      //   );
+      // }
 
-  //     setState(() {
-  //       isRecording = !isRecording;
-  //     });
-  //   }
-  // }
+      // setState(() {
+      //   isRecording = !isRecording;
+      // });
+    }
+  }
 
   // void sendFileMessage(
   //   File file,
@@ -136,13 +138,13 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   //   }
   // }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   _messageController.dispose();
-  //   _soundRecorder!.closeRecorder();
-  //   isRecorderInit = false;
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    _messageController.dispose();
+    // _soundRecorder!.closeRecorder();
+    // isRecorderInit = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +153,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
         Expanded(
           child: TextFormField(
             // focusNode: focusNode,
-            // controller: _messageController,
+            controller: _messageController,
             onChanged: (val) {
               if (val.isNotEmpty) {
                 setState(() {
@@ -233,13 +235,16 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
           child: CircleAvatar(
             backgroundColor: const Color(0xFF128C7E),
             radius: 25,
-            child: Icon(
-              isShowSendButton
-                  ? Icons.send
-                  // : isRecording
-                      // ? Icons.close
-                      : Icons.mic,
-              color: Colors.white,
+            child: GestureDetector(
+              child: Icon(
+                isShowSendButton
+                    ? Icons.send
+                    // : isRecording
+                    // ? Icons.close
+                    : Icons.mic,
+                color: Colors.white,
+              ),
+              onTap: sendTextMessage,
             ),
           ),
         ),

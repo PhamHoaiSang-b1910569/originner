@@ -7,14 +7,19 @@ import 'package:originner/features/auth/controller/auth_controller.dart';
 import 'package:originner/features/chat/widgets/bottom_chat_field.dart';
 
 import 'package:originner/models/user_model.dart';
-import 'package:originner/widgets/chat_list.dart';
+import 'package:originner/features/chat/widgets/chat_list.dart';
 
 class MobileChatScreen extends ConsumerWidget {
   static const String routeName = '/mobile-chat-screen';
   final String name;
   final String uid;
-  const MobileChatScreen({Key? key, required this.name, required this.uid})
-      : super(key: key);
+  // final bool isGroupChat;
+  const MobileChatScreen({
+    Key? key,
+    required this.name,
+    required this.uid,
+    // required this.isGroupChat,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,11 +35,14 @@ class MobileChatScreen extends ConsumerWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name,
+                  Text(
+                    name,
                     // textAlign: TextAlign.right
                   ),
                   Text(
-                    snapshot.data!.isOnline ? 'Đang hoat động' : 'Đang dừng hoat động',
+                    snapshot.data!.isOnline
+                        ? 'Đang hoat động'
+                        : 'Đang dừng hoat động',
                     style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.normal,
@@ -62,13 +70,17 @@ class MobileChatScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          const Expanded(
-            child: ChatList(),
+          Expanded(
+            child: ChatList(
+             recieverUserId: uid,
+            ),
           ),
-          BottomChatField(),
+          BottomChatField(
+            recieverUserId: uid,          
+            // isGroupChat: isGroupChat,
+          ),
         ],
       ),
     );
   }
 }
-
