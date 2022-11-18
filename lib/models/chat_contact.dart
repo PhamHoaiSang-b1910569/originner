@@ -22,8 +22,6 @@ class ChatContact {
     };
   }
 
-  // static fromMap(Map<String, dynamic> data) {
-
   factory ChatContact.fromMap(Map<String, dynamic> map) {
     return ChatContact(
       name: map['name'] ?? '',

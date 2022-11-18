@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:originner/colors.dart';
 import 'package:originner/common/widgets/loader.dart';
 import 'package:originner/features/auth/controller/auth_controller.dart';
@@ -13,19 +14,19 @@ class MobileChatScreen extends ConsumerWidget {
   static const String routeName = '/mobile-chat-screen';
   final String name;
   final String uid;
-  // final bool isGroupChat;
+
   const MobileChatScreen({
     Key? key,
     required this.name,
     required this.uid,
-    // required this.isGroupChat,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appBarColor,
+        foregroundColor: blackColor,
+        backgroundColor: backgroundColor,
         title: StreamBuilder<UserModel>(
             stream: ref.read(authControllerProvider).userDataById(uid),
             builder: (context, snapshot) {
@@ -37,6 +38,9 @@ class MobileChatScreen extends ConsumerWidget {
                 children: [
                   Text(
                     name,
+                    style: const TextStyle(
+                      color: blackColor,
+                    ),
                     // textAlign: TextAlign.right
                   ),
                   Text(
@@ -46,6 +50,7 @@ class MobileChatScreen extends ConsumerWidget {
                     style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.normal,
+                      color: greyColor,
                     ),
                     // textAlign: TextAlign.right
                   ),
@@ -56,15 +61,18 @@ class MobileChatScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.video_call),
+            icon: const Icon(
+              Iconsax.video,
+              color: blackColor,
+            ),
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.call),
+            icon: const Icon(Iconsax.call, color: blackColor),
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.more_vert),
+            icon: const Icon(Iconsax.more, color: blackColor),
           ),
         ],
       ),
@@ -72,12 +80,11 @@ class MobileChatScreen extends ConsumerWidget {
         children: [
           Expanded(
             child: ChatList(
-             recieverUserId: uid,
+              recieverUserId: uid,
             ),
           ),
           BottomChatField(
-            recieverUserId: uid,          
-            // isGroupChat: isGroupChat,
+            recieverUserId: uid,
           ),
         ],
       ),

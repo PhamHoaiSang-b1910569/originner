@@ -33,9 +33,12 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Originner App',
-      theme: ThemeData.dark().copyWith(
+      
+      theme: ThemeData(
         scaffoldBackgroundColor: backgroundColor,
+        fontFamily: 'OpenSans'
       ),
+     
       onGenerateRoute: (settings) => generateRoute(settings),
       home: ref.watch(userDataAuthProvider).when(
             data: (user) {

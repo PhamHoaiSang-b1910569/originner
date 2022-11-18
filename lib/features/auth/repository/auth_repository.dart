@@ -8,6 +8,7 @@ import 'package:originner/common/repositories/common_firebase_storage_repository
 import 'package:originner/common/utils/utils.dart';
 import 'package:originner/features/auth/screens/otp_screen.dart';
 import 'package:originner/features/auth/screens/user_information_screen.dart';
+
 import 'package:originner/models/user_model.dart';
 import 'package:originner/screens/mobile_layout_screen.dart';
 
@@ -25,6 +26,10 @@ class AuthRepository {
     required this.auth,
     required this.firestore,
   });
+
+  Future<String> getCurrentUID() async {
+    return (auth.currentUser!).uid;
+  }
 
   Future<UserModel?> getCurrentUserData() async {
     var userData =

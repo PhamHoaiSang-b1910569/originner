@@ -4,6 +4,7 @@ import 'package:originner/common/widgets/error.dart';
 import 'package:originner/features/auth/screens/login_screen.dart';
 import 'package:originner/features/auth/screens/otp_screen.dart';
 import 'package:originner/features/auth/screens/user_information_screen.dart';
+import 'package:originner/features/landing/screens/landing_screen.dart';
 import 'package:originner/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:originner/features/chat/screens/mobile_chat_screen.dart';
 
@@ -13,6 +14,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const LoginScreen(),
       );
+
+    case LandingScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const LandingScreen(),
+      );
+
     case OTPScreen.routeName:
       final verificationId = settings.arguments as String;
       return MaterialPageRoute(
@@ -38,17 +45,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       final arguments = settings.arguments as Map<String, dynamic>;
       final name = arguments['name'];
       final uid = arguments['uid'];
-      // final isGroupChat = arguments['isGroupChat'];
-      // final profilePic = arguments['profilePic'];
       return MaterialPageRoute(
         // ignore: prefer_const_constructors
         builder: (context) => MobileChatScreen(
           name: name,
-          uid: uid, 
-          
-          
-          // isGroupChat: isGroupChat,
-          // profilePic: profilePic,
+          uid: uid,
         ),
       );
 

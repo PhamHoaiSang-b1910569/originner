@@ -55,6 +55,11 @@ dependencies:
   swipe_to: ^1.0.2
   story_view: ^0.13.2
   agora_uikit: ^1.0.2
+  iconsax: ^0.0.8
+  ionicons: ^0.1.2
+  unicons: ^2.1.0
+  
+ 
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +76,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
+
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -83,6 +89,23 @@ flutter:
     - assets/backgroundImage.png
     - assets/bg.png
     - assets/mhc.png
+    - assets/landing.png
+
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Bold.ttf
+          weight: 700
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Medium.ttf
+    
+    - family: ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu-Regular.ttf
+        - asset: assets/fonts/Ubuntu-Bold.ttf
+          weight: 700
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

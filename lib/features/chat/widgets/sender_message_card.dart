@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:originner/colors.dart';
+import 'package:originner/common/enums/message_enum.dart';
+import 'package:originner/features/chat/widgets/display_text_image_gif.dart';
+
 
 class SenderMessageCard extends StatelessWidget {
   const SenderMessageCard({
     Key? key,
     required this.message,
     required this.date,
+    required this.type,
   }) : super(key: key);
   final String message;
   final String date;
-
+  final MessageEnum type;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -26,19 +30,25 @@ class SenderMessageCard extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.only(
+                padding: type == MessageEnum.text
+                ? const EdgeInsets.only(
                   left: 10,
                   right: 30,
                   top: 5,
                   bottom: 20,
+                )
+                : const EdgeInsets.only(
+                  left: 5,
+                  top: 5,
+                  right: 5,                  
+                  bottom: 25,
                 ),
-                child: Text(
-                  message,
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
+                child: DisplayTextImageGIF(
+                  message: message,
+                  type: type,
                 ),
               ),
+              
               Positioned(
                 bottom: 2,
                 right: 10,

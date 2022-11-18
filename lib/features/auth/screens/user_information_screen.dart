@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:originner/common/utils/utils.dart';
 import 'package:originner/features/auth/controller/auth_controller.dart';
 
@@ -51,6 +52,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
             children: [
               Stack(
                 children: [
+
                   image == null
                       ? const CircleAvatar(
                           backgroundImage: NetworkImage(
@@ -59,10 +61,12 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
                           radius: 64,
                         )
                       : CircleAvatar(
+                        
                           backgroundImage: FileImage(
                             image!,
                           ),
                           radius: 64,
+                          
                         ),
                   Positioned(
                     bottom: -10,
@@ -80,7 +84,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
                 children: [
                   Container(
                     width: size.width * 0.85,
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(30),
                     child: TextField(
                       controller: nameController,
                       decoration: const InputDecoration(
@@ -91,7 +95,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
                   IconButton(
                     onPressed: storeUserData,
                     icon: const Icon(
-                      Icons.done,
+                      Iconsax.tick_circle,
                     ),
                   ),
                 ],

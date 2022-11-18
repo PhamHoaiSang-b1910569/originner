@@ -51,6 +51,7 @@ class SelectContactRepository {
             context,
             MobileChatScreen.routeName,
             arguments: {
+              
               'name': userData.name,
               'uid': userData.uid,
             },

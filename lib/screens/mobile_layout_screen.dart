@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:originner/colors.dart';
 import 'package:originner/features/auth/controller/auth_controller.dart';
+import 'package:originner/features/landing/screens/landing_screen.dart';
 import 'package:originner/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:originner/features/chat/widgets/contacts_list.dart';
 
@@ -14,10 +18,12 @@ class MobileLayoutScreen extends ConsumerStatefulWidget {
 
 class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
     with WidgetsBindingObserver {
+  // ignore: prefer_final_fields
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
-    // tabBarController = TabController(length: 3, vsync: this);
+
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -49,29 +55,31 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: appBarColor,
+          backgroundColor: backgroundColor,
           centerTitle: false,
           title: const Text(
             'Originner app',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 22,
               color: Colors.grey,
               fontWeight: FontWeight.bold,
             ),
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.search, color: Colors.grey),
+              icon: const Icon(Ionicons.search, color: Colors.grey),
               onPressed: () {},
             ),
             IconButton(
-              icon: const Icon(Icons.more_vert, color: Colors.grey),
-              onPressed: () {},
-            ),
+                icon: const Icon(Iconsax.logout, color: Colors.grey),
+                onPressed: () async {
+                  await _auth.signOut();
+                  Navigator.pushNamed(context, LandingScreen.routeName);
+                })
           ],
           bottom: const TabBar(
             indicatorColor: tabColor,
-            indicatorWeight: 4,
+            indicatorWeight: 2,
             labelColor: tabColor,
             unselectedLabelColor: Colors.grey,
             labelStyle: TextStyle(
@@ -79,13 +87,13 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
             ),
             tabs: [
               Tab(
-                text: 'TIN NHẮN',
+                icon: Icon(Iconsax.message),
               ),
               Tab(
-                text: 'TRẠNG THÁI',
+                icon: Icon(Ionicons.stats_chart_outline),
               ),
               Tab(
-                text: 'CUỘC GỌI',
+                icon: Icon(Iconsax.call),
               ),
             ],
           ),
@@ -97,7 +105,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
           },
           backgroundColor: tabColor,
           child: const Icon(
-            Icons.comment,
+            Iconsax.user_add,
             color: Colors.white,
           ),
         ),

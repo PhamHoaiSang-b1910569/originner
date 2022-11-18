@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:originner/colors.dart';
 import 'package:originner/common/widgets/loader.dart';
 import 'package:originner/features/chat/controller/chat_controller.dart';
-import 'package:originner/info.dart';
+
 import 'package:originner/features/chat/screens/mobile_chat_screen.dart';
 import 'package:originner/models/chat_contact.dart';
 
@@ -29,6 +29,7 @@ class ContactsList extends ConsumerWidget {
                 var chatContactData = snapshot.data![index];
                 return Column(
                   children: [
+                    
                     InkWell(
                       onTap: () {
                        Navigator.pushNamed(
@@ -74,7 +75,7 @@ class ContactsList extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    const Divider(color: dividerColor, indent: 85),
+                    const Divider(color: dividerColor, indent: 0),
                   ],
                 );
               },
